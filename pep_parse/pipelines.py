@@ -2,8 +2,7 @@ from collections import defaultdict
 import csv
 import datetime as dt
 
-
-BASE_DIR = 'results/'
+from pep_parse.settings import BASE_DIR, TIME_FORMAT
 
 
 list_of_statuses = []
@@ -27,11 +26,10 @@ class PepParsePipeline:
         results.append(('Total', len(list_of_statuses)))
 
         now = dt.datetime.now()
-        now_formatted = now.strftime('%Y-%m-%d_%H-%M-%S')
+        now_formatted = now.strftime(TIME_FORMAT)
         file_name = f'status_summary_{now_formatted}.csv'
         file_path = BASE_DIR / file_name
         with open(file_path, 'w', encoding='utf-8') as f:
             file_writer = csv.writer(f, delimiter=',', lineterminator='\r')
             file_writer.writerow(['Status', 'Quantity'])
-            for row in results:
-                file_writer.writerow(row)
+            file_writer.writerows(results)
