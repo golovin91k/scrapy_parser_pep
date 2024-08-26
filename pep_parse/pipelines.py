@@ -1,12 +1,11 @@
 from collections import defaultdict
 import csv
 import datetime as dt
-from pathlib import Path
 
-from pep_parse.settings import TIME_FORMAT
-
-
-BASE_DIR = Path(__file__).parent.parent
+from pep_parse.settings import TIME_FORMAT, BASE_DIR
+# Если в коде настоящего файла не использовать константу BASE_DIR
+# проект не проходит тесты pytest
+# Поэтому я использовал BASE_DIR для определения константы RESULT_DIR
 
 
 class PepParsePipeline:

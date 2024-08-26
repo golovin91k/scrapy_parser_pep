@@ -1,6 +1,13 @@
+from pathlib import Path
+
+
 BOT_NAME = 'pep_parse'
 
 ALLOWED_DOMAINS = ['peps.python.org']
+
+BASE_DIR = Path(__file__).parent.parent
+
+# RESULT_DIR = BASE_DIR / 'results/'
 
 TIME_FORMAT = '%Y-%m-%d_%H-%M-%S'
 
