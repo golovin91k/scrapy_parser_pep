@@ -7,7 +7,7 @@ ALLOWED_DOMAINS = ['peps.python.org']
 
 BASE_DIR = Path(__file__).parent.parent
 
-RESULT_DIR = 'results'
+RESULTS = 'results'
 
 TIME_FORMAT = '%Y-%m-%d_%H-%M-%S'
 
@@ -17,7 +17,7 @@ NEWSPIDER_MODULE = 'pep_parse.spiders'
 ROBOTSTXT_OBEY = True
 
 FEEDS = {
-    f'{RESULT_DIR}/pep_%(time)s.csv': {
+    f'{RESULTS}/pep_%(time)s.csv': {
         'format': 'csv',
         'fields': ['number', 'name', 'status'],
         'overwrite': True
