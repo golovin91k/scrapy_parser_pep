@@ -2,14 +2,12 @@ from collections import defaultdict
 import csv
 import datetime as dt
 
-from pep_parse.settings import TIME_FORMAT, BASE_DIR
-# Если в коде настоящего файла не использовать константу BASE_DIR
-# проект не проходит тесты pytest
-# Поэтому я использовал BASE_DIR для определения константы RESULT_DIR
+from pep_parse.settings import TIME_FORMAT, BASE_DIR, RESULT_DIR
 
 
 class PepParsePipeline:
     list_of_statuses = []
+    result_dir = BASE_DIR / RESULT_DIR
 
     def open_spider(self, spider):
         pass
@@ -30,8 +28,7 @@ class PepParsePipeline:
         now = dt.datetime.now()
         now_formatted = now.strftime(TIME_FORMAT)
         file_name = f'status_summary_{now_formatted}.csv'
-        RESULT_DIR = BASE_DIR / 'results/'
-        with open(RESULT_DIR / file_name, 'w', encoding='utf-8') as f:
+        with open(self.result_dir / file_name, 'w', encoding='utf-8') as f:
             file_writer = csv.writer(f, delimiter=',', lineterminator='\r')
             file_writer.writerow(['Status', 'Quantity'])
             file_writer.writerows(results)
